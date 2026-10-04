@@ -8,7 +8,8 @@ $jar = Join-Path $config.androidHome 'platforms\android-36\android.jar'
 Set-Location $PSScriptRoot
 New-Item -ItemType Directory -Force build/classes, build/dex | Out-Null
 function Check { if ($LASTEXITCODE -ne 0) { throw "Build mislukt: $LASTEXITCODE" } }
-& "$bt\aapt2.exe" link -o build/base.apk --manifest AndroidManifest.xml -I $jar --min-sdk-version 26 --target-sdk-version 32 --version-code 1 --version-name 0.1; Check
+& "$bt\aapt2.exe" compile --dir res -o build/resources.zip; Check
+& "$bt\aapt2.exe" link -o build/base.apk --manifest AndroidManifest.xml -I $jar --min-sdk-version 26 --target-sdk-version 32 --version-code 2 --version-name 0.1 build/resources.zip; Check
 $sources = Get-ChildItem src -Recurse -Filter *.java | ForEach-Object FullName
 & "$env:JAVA_HOME\bin\javac.exe" -encoding UTF-8 -source 8 -target 8 -classpath $jar -d build/classes $sources; Check
 $classes = Get-ChildItem build/classes -Recurse -Filter *.class | ForEach-Object FullName

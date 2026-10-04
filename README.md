@@ -1,5 +1,7 @@
 # Wakeify 0.1 — toesteltest
 
+<img src="assets/wakeify-logo.svg" alt="Wakeify" width="96" />
+
 Installeer Wakeify-0.1.apk op je telefoon. Sta installatie vanuit de gebruikte browser of bestandsapp toe als Android daarom vraagt.
 
 1. Open Wakeify en geef cameratoegang via de testknop.
